@@ -11,11 +11,6 @@
 #     <li>Improve Results</li>
 #     <li>Present Results</li>
 # 
-# 
-# 
-# .
-
-# In[1]:
 
 
 # Check Versions
@@ -39,8 +34,6 @@ import sklearn
 print('sklearn: {}'.format(sklearn.__version__))
 
 
-# In[2]:
-
 
 # Load libraries.
 # Below are the libraries that we are going to use in this project. 
@@ -59,8 +52,6 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
 
 
-# In[3]:
-
 
 # Load dataset.
 # Note that we are specifying the column names now which will help us later on. 
@@ -76,28 +67,23 @@ dataset = pandas.read_csv(url, names=names)
 # <li>Statistical summary of all attributes</li>
 # <li>Breakdown of the data by the class variable</li>
 
-# In[6]:
+
 
 
 # Dimentions (rows, columns)
 dataset.shape
 
 
-# In[7]:
 
 
 # Peek at the data 
 dataset.head(20)
 
 
-# In[8]:
-
 
 # Statistical Summary 
 dataset.describe()
 
-
-# In[10]:
 
 
 # Class distribution 
@@ -113,15 +99,12 @@ print(dataset.groupby('class').size())
 
 # <h3> Univariate plots </h3>
 
-# In[21]:
 
 
 # box and whisker plots
 dataset.plot(kind='box', subplots=True, layout=(2,2), sharex=False, sharey=False)
 plt.show()
 
-
-# In[19]:
 
 
 # histograms 
@@ -133,7 +116,7 @@ plt.show()
 
 # <h3> Multivariate plots </h3>
 
-# In[22]:
+
 
 
 # scatter plot matrix
@@ -153,7 +136,6 @@ plt.show()
 # <h4>Create a Validation Dataset</h4>
 # <p>We will split the loaded dataset into two, 80% of which we will use to train our models and 20% that we will hold back as a validation dataset</p>
 
-# In[29]:
 
 
 # Assign the dataset df to an array to split its values 
@@ -175,7 +157,6 @@ X_train, X_validation, Y_train, Y_validation = model_selection.train_test_split(
 
 # <p>We are using the metric of ‘accuracy‘ to evaluate models. This is a ratio of the number of correctly predicted instances in divided by the total number of instances in the dataset multiplied by 100 to give a percentage (e.g. 95% accurate). We will be using the scoring variable when we run build and evaluate each model next.</p>
 
-# In[34]:
 
 
 # Test options and evaluation metric to be used in Cross-validation 
@@ -199,7 +180,7 @@ scoring = 'accuracy'
 # This is a good mixture of simple linear (LR and LDA), nonlinear (KNN, CART, NB and SVM) algorithms. We reset the random number seed before each run to ensure that the evaluation of each algorithm is performed using exactly the same data splits. It ensures the results are directly comparable.
 # 
 
-# In[43]:
+
 
 
 # Building our models
@@ -220,12 +201,12 @@ for name, model in models:
     results.append(cv_results)
     names.append(name)
     msg = "%s: %f (%f)" % (name, cv_results.mean(), cv_results.std())
-    print(msg)
+    print('Model'+ msg)
 
 
 # We can also create a plot of the model evaluation results and compare the spread and the mean accuracy of each model. There is a population of accuracy measures for each algorithm because each algorithm was evaluated 10 times (10 fold cross validation).
 
-# In[44]:
+
 
 
 # Compare Algorithms
@@ -245,7 +226,6 @@ plt.show()
 # 
 # We can run the SVM model directly on the validation set and summarize the results as a final accuracy score, a confusion matrix and a classification report.
 
-# In[45]:
 
 
 # Make predictions on validation dataset
